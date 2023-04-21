@@ -1,0 +1,38 @@
+<h3>User list</h3>
+
+<div class="my-2">
+    <label>User Name</label>
+    <!-- <input type="text" class="form-control"  (input)="onUpdateUser($event)" /> -->
+    <input type="text" class="form-control"  [(ngModel)]="userName" />
+</div>
+<!-- <div> {{userName}} </div> -->
+
+<button class="btn btn-primary" 
+    [disabled]="!allowNewUser" 
+    (click)="changeUsercreatedStatus()"  >
+  Add user
+</button>
+
+
+
+<!-- <div> {{allowNewUser}} </div> -->
+
+
+<div *ngIf="isUserCreated; else noUser"  >
+  user is created and the usernamt is : {{userName}} 
+</div>
+
+<ng-template #noUser>
+  <div>no user is created</div>
+</ng-template>
+
+<app-user *ngFor="let user of users"></app-user>
+
+<!-- <div *ngIf="!isUserCreated"  >
+  no user is created 
+</div> -->
+
+
+
+
+
