@@ -1,33 +1,45 @@
+import { Input } from '@angular/core';
 import { Component } from '@angular/core';
+import {LoggingServices} from '../services/logging.services'
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  styleUrls: ['./users.component.css'],
+  // encapsulation:ViewEncapsulation.None
+  providers:[LoggingServices],
 })
-export class UsersComponent {
-  allowNewUser=false;
+export class UsersComponent  {
 
-  userName='';
+  
   isUserCreated=false;
-  users=['user 1','user 2']
+  users:string[]=[];
+  isAvailable:boolean=false;
+  vlaue =10;
 
-  constructor(){
-    setTimeout(() => {
-      this.allowNewUser=true;
-   
-    }, 3000);
-  }
 
-  changeUsercreatedStatus(){
 
-    this.isUserCreated=true;
-    this.users.push(this.userName)
+  constructor(private LoggingServices: LoggingServices ){}
+  
+  onUserAdded(event:string){
+    this.users.push(event)
 
   }
 
-  onUpdateUser(event: Event){
-     console.log((event.target as HTMLInputElement ).value)
-    this.userName=(event.target as HTMLInputElement ).value;
+  onNameChange(){
+    console.log('name change')
+    // let loggingServices=new LoggingServices();
+      this.LoggingServices.logToConsole('name change')
   }
+
+  onUserDelete(){
+    this.users=[]
+  }
+
+
+
+  // onUpdateUser(event: Event){
+  //    console.log((event.target as HTMLInputElement ).value)
+  //   this.userName=(event.target as HTMLInputElement ).value;
+  // }
 }

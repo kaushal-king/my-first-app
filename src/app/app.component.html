@@ -1,13 +1,61 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-12">
-      
-      <h3>
-        <div>hi  {{name}}</div>
-      </h3>
-      <hr>
-      
-      <app-users></app-users>
+    <div class="col-md-12">
+      <button (click)="onLogin()"  >login</button>
+      <button (click)="onLogout()" >logout</button>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="nav flex-column nav-pills ">
+        <!-- <li class="nav-item" ><a href="/">Home</a></li>
+        <li class="nav-item" ><a href="/users">Users</a></li>
+        <li class="nav-item" ><a href="/category">Catogories</a></li> -->
+        <li class="nav-item" ><a  class="nav-link " routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a></li>
+        <li class="nav-item" ><a  class="nav-link" routerLink="/users" routerLinkActive="active">Users</a></li>
+        <li class="nav-item" ><a  class="nav-link" [routerLink]="['/category']" routerLinkActive="active">Catogories</a></li>
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-12">
+            <router-outlet> </router-outlet>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
+
+
+
+
+  
+
+          
+
+<!-- <div class="container">
+  <div class="row my-3">
+    <div class="col-md-12">
+      <app-add-user-for-services></app-add-user-for-services>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+
+        ----basic directory and attribute and all this thing
+  
+      <app-users ></app-users>
+
+        ----used for service 
+
+      <app-users-list-services *ngFor="let user of users; let i=index   "  [user]="user"  [id]="i"  ></app-users-list-services>
+    </div>
+  </div>
+</div> -->

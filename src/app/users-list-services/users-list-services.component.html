@@ -1,0 +1,15 @@
+
+
+
+
+<div class="container">
+    <span> username : {{user.name}}  </span><br>
+    <span> status : {{user.status}}  </span><br>
+    <span>  
+        <button class="btn btn-primary m-2"  (click)="onUpdateStatus('active')"  > Set Active</button>
+
+        <button class="btn btn-primary" (click)="onUpdateStatus('Inactive')" > Set Inactive</button>
+
+        <button class="btn btn-danger" (click)="onDeleteUser()" > Delete</button>
+    </span><br><br>
+</div>

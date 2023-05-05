@@ -1,32 +1,15 @@
-<h3>User list</h3>
+<h3 >user list</h3>
 
-<div class="my-2">
-    <label>User Name</label>
-    <!-- <input type="text" class="form-control"  (input)="onUpdateUser($event)" /> -->
-    <input type="text" class="form-control"  [(ngModel)]="userName" />
-</div>
-<!-- <div> {{userName}} </div> -->
-
-<button class="btn btn-primary" 
-    [disabled]="!allowNewUser" 
-    (click)="changeUsercreatedStatus()"  >
-  Add user
-</button>
+<app-add-user (userAdded)="onUserAdded($event)" ></app-add-user> 
+<button class="btn btn-primary ms-2"   (click)="onNameChange()">name change</button>
+<button class="btn btn-danger ms-2"   (click)="onUserDelete()">delete user</button>
 
 
-
-<!-- <div> {{allowNewUser}} </div> -->
-
-
-<div *ngIf="isUserCreated; else noUser"  >
-  user is created and the usernamt is : {{userName}} 
-</div>
-
-<ng-template #noUser>
-  <div>no user is createdd</div>
-</ng-template>
-
-<app-user *ngFor="let user of users"></app-user>
+<app-user *ngFor="let user of users" [user]="user">
+  <div >
+   <p #userParagraph> Inserting between the component username is:{{user}}</p> 
+  </div>
+</app-user>
   
 <!-- <div *ngIf="!isUserCreated"  >
   no user is created 
@@ -34,5 +17,37 @@
 
 
 
+<div class="mt-2" appRenderHighlighight  [defaultColor]="'orange'" [highlightColor]="'black'" [selectColor]="'green' "   >
+    please add the background color green
+</div>
 
+<div class="mt-2" appHighligghtText >
+  please add the background color red
+</div>
+
+
+<div>
+  <button (click)="isAvailable=!isAvailable" >Toggle</button>
+</div>
+
+<div *ngIf="isAvailable">
+    structure if
+</div>
+
+<ng-template [ngIf]="isAvailable">
+  <div>   elemnt if with ng template</div>
+</ng-template>
+
+
+<div  *appAlternateIfdirectives="isAvailable">
+  custome structure attribute
+</div>
+
+
+<div    [ngSwitch]="vlaue" >
+  {{vlaue}}
+  <div *ngSwitchCase="10" > value is 10</div>
+  <div *ngSwitchCase="15" > value is 15</div>
+  <div *ngSwitchDefault > value is default</div>
+</div>
 
