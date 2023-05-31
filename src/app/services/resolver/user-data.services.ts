@@ -1,4 +1,11 @@
+import { EventEmitter } from "@angular/core"
+import { Subject } from "rxjs";
+
 export class userdataSercive{
+
+
+    userAddedEvent=new Subject<boolean>();
+
     getUser(id:string){
         if(id==='1'){
             return{
@@ -12,4 +19,10 @@ export class userdataSercive{
             }
         }
     }
+
+
+    addUser(){
+        this.userAddedEvent.next(true);
+    }
+
 }

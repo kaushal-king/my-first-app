@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form (ngSubmit)="onformsubmit()" #f="ngForm" >
+
+                <button class="btn btn-primary"  (click)="fillValue()" >Fill value</button>
+
+            <div  *ngIf="!userdata.valid && userdata.touched">user data is invalid</div>
+            <div  ngModelGroup="userdata"  #userdata="ngModelGroup">
+                <div class="form-group">
+                    <label for="username">user Name</label>
+                    <input type="text" class="form-control" id="username"   (input)="checkdata()"     name="username" ngModel required />
+                </div>
+
+                <div class="form-group">
+                    <label for="email">email</label>
+                    <input type="text" class="form-control"  id="email" name="email" ngModel required email  #email="ngModel"  />
+                    <span class="help-text" *ngIf="f.controls['email'] && !f.controls['email'].valid && f.controls['email'].touched" > please enter valid email</span>
+                    <span class="help-text" *ngIf=" !email.valid && email.touched" > please enter valid email</span>
+                </div>
+            </div>
+                <div class="form-group">
+                    <label for="gender">gender</label>
+                    <select class="form-control" id="gender" name="gender" [ngModel]="gender" >
+                        <option value="male">male</option>
+                        <option value="female">female</option>
+                    </select>
+                </div>
+               
+
+                <div class="form-group">
+                    <label for="username">about</label>
+                    <textarea class="form-control" rows="3" id="about"   name="about" [(ngModel)]="about" required ></textarea>
+                </div>
+
+                <div> {{about}} </div>
+
+                <div class="mt-2">
+                    <button type="submit" class="btn btn-primary" [disabled]="!f.valid"  >Submit</button>
+                </div>
+
+                <div *ngIf="submittted" >
+                    <h3>your data </h3>
+                    <div>user: {{user.username}}</div>
+                    <div>emial: {{user.email}}</div>
+                    <div>gender: {{user.gender}}</div>
+                    <div>about: {{user.about}}</div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

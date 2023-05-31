@@ -1,0 +1,16 @@
+<ul class="nav flex-column nav-pills ">
+    <!-- <li class="nav-item" ><a href="/">Home</a></li>
+    <li class="nav-item" ><a href="/users">Users</a></li>
+    <li class="nav-item" ><a href="/category">Catogories</a></li> -->
+    <li class="nav-item" ><a  class="nav-link " routerLink="/auth" routerLinkActive="active"  *ngIf="!isAuthenticated"  >Authenticate</a></li>
+    <li class="nav-item" ><a href="#"  class="nav-link " routerLink="/auth" routerLinkActive="active"  *ngIf="isAuthenticated"  (click)="onLogoutr($event)" >logout</a></li>
+    <div *ngIf="isAuthenticated" >
+    <li class="nav-item" ><a  class="nav-link " routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a></li>
+    <li class="nav-item" ><a  class="nav-link" routerLink="/users" routerLinkActive="active">Users</a></li>
+    <li class="nav-item" ><a  class="nav-link" [routerLink]="['/category']" routerLinkActive="active">Catogories</a></li>
+    <li class="nav-item" ><a  class="nav-link" [routerLink]="['/form']" routerLinkActive="active">Template form</a></li>
+    <li class="nav-item" ><a  class="nav-link" [routerLink]="['/reactive-form']" routerLinkActive="active">Reactive form</a></li>
+    <li class="nav-item" ><a  class="nav-link" [routerLink]="['/pipe']" routerLinkActive="active">fillter pipe</a></li>
+    <li class="nav-item" ><a  class="nav-link" [routerLink]="['/post']" routerLinkActive="active">Post Component</a></li>
+    </div>
+  </ul>

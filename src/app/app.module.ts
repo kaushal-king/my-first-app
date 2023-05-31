@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { UserComponent} from './user/user.component';
 import { UsersComponent } from './users/users.component'
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddUserComponent } from './add-user/add-user.component';
 import { HighlightTextDirectives } from './Directives/HighlightText.directives';
 import { RenderHighlighightDirective } from './Directives/render-highlighight.directive';
@@ -29,7 +29,19 @@ import { AuthGuardServices } from './services/guards/auth-guard.services';
 import { DeactivateGuardServicer } from './services/guards/deactivate-guard.services';
 import { UserResolver } from './services/resolver/user-resolver.services';
 import { userdataSercive } from './services/resolver/user-data.services';
-
+import { TemplateFormComponent } from './form/template-form/template-form.component';
+import { ReactiveFormComponent } from './form/reactive-form/reactive-form.component';
+import { FillterPipesComponent } from './pipe/fillter-pipes/fillter-pipes.component';
+import { ShortenPipe } from './pipe/shorten.pipe';
+import { FiltercustomepipePipe } from './pipe/filtercustomepipe.pipe';
+import { PostComponent } from './http/post/post.component';
+import{HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http"
+import { AuthInterceptorService } from './services/auth-interceptor';
+import { AuthTokenInterseportService } from './services/auth-token-interseptor';
+import { LogginInterceptor } from './services/loggin-interseptor';
+import { AuthComponent } from './auth/auth.component';
+import { LoadingSpinner } from './shared/loading-spinner/loading-spinner.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 
 
@@ -49,14 +61,27 @@ import { userdataSercive } from './services/resolver/user-data.services';
     UserrouterComponent,
     UsersrouterComponent,
     EditUserComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    TemplateFormComponent,
+    ReactiveFormComponent,
+    FillterPipesComponent,
+    ShortenPipe,
+    FiltercustomepipePipe,
+    PostComponent,
+    AuthComponent,
+    LoadingSpinner,
+    NavigationComponent
   ],
   imports: [
-    BrowserModule,  FormsModule,AppRoutingModule
+    BrowserModule,  FormsModule,AppRoutingModule,ReactiveFormsModule,HttpClientModule
     
   ],
 
-  providers: [UserServices,LoggingServices,AuthService,AuthGuardServices,DeactivateGuardServicer,UserResolver,userdataSercive],
+  providers: [UserServices,LoggingServices,AuthService,AuthGuardServices,DeactivateGuardServicer,UserResolver,userdataSercive,
+              {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptorService,multi:true},
+              {provide:HTTP_INTERCEPTORS,useClass:LogginInterceptor,multi:true},
+              {provide:HTTP_INTERCEPTORS,useClass:AuthTokenInterseportService,multi:true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,7 +5,8 @@ import { IDeactivateGuard } from 'src/app/services/guards/deactivate-guard.servi
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
-  styleUrls: ['./edit-user.component.css']
+  styleUrls: ['./edit-user.component.css'],
+
 })
 export class EditUserComponent  implements IDeactivateGuard , OnInit {
 

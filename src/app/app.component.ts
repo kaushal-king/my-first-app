@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserServices } from './services/user.services';
 import { AuthService } from './services/auth.services';
+import{userdataSercive} from './services/resolver/user-data.services'
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -9,23 +11,36 @@ import { AuthService } from './services/auth.services';
   styleUrls: ['./app.component.css'],
   
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit,OnDestroy {
 
  name="kaushal";
  title="my-first-app"
   users:{name:string; status:string}[]=[];
+  userAdded=false;
 
- constructor(private UserServices:UserServices,private AuthService:AuthService  ){}
+ constructor(private UserServices:UserServices,private AuthService:AuthService, private userdataSercive:userdataSercive ){}
+
+
+ userAddedSusbriction!:Subscription;
 
 
   ngOnInit(): void {
 
     this.users=this.UserServices.user;
+    this.userAddedSusbriction=this.userdataSercive.userAddedEvent.subscribe(data=>{
+      console.log('call'+data)
+      this.userAdded=data
+    })
    
   }
 
+  ngOnDestroy(): void {
+   this.userAddedSusbriction.unsubscribe();
+  }
+
+
   onLogin() {
-    this.AuthService.login()
+    // this.AuthService.login()
 
   }
   onLogout() {

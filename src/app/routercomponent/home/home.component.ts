@@ -44,8 +44,9 @@ export class HomeComponent implements OnInit,OnDestroy  {
       },1000)
      }
      );
-
-
+                
+      
+                                                                                                                                
      this.intervalSusbscription= customeObservabl.pipe( filter((data:number) => data>0 ),map(data=>{return 'count is'+data})).subscribe((data:any)=>{
       console.log(data)
      },(error:any)=>{

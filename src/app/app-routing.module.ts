@@ -10,6 +10,12 @@ import { PageNotFoundComponent } from './routercomponent/page-not-found/page-not
 import { AuthGuardServices } from "./services/guards/auth-guard.services";
 import { DeactivateGuardServicer } from "./services/guards/deactivate-guard.services";
 import { UserResolver } from "./services/resolver/user-resolver.services";
+import { TemplateFormComponent } from "./form/template-form/template-form.component";
+import { ReactiveFormComponent } from "./form/reactive-form/reactive-form.component";
+import { FillterPipesComponent } from "./pipe/fillter-pipes/fillter-pipes.component";
+import { PostComponent } from "./http/post/post.component";
+import { AuthComponent } from "./auth/auth.component";
+
 
 
 const appRoutes:Routes=[
@@ -26,12 +32,17 @@ const appRoutes:Routes=[
       },
     ]},
     {path:'category',component:CategoryComponent},
+    {path:'form',component:TemplateFormComponent},
+    {path:'reactive-form',component:ReactiveFormComponent},
+    {path:'pipe',component:FillterPipesComponent},
+    {path:'post',component:PostComponent},
+    {path:'auth',component:AuthComponent},
     {path:'not-found',component:PageNotFoundComponent},           
     {path:'**',redirectTo:'not-found'},//does not matach anything and add this line at the end
   ]
 
 @NgModule({
-    imports:[ RouterModule.forRoot(appRoutes,{useHash:true})],
+    imports:[ RouterModule.forRoot(appRoutes)],
     exports:[RouterModule]
 })
 export class AppRoutingModule{                

@@ -1,26 +1,27 @@
 <div class="container">
-  <div class="row">
+  <!-- <div class="row">
     <div class="col-md-12">
       <button (click)="onLogin()"  >login</button>
       <button (click)="onLogout()" >logout</button>
     </div>
-  </div>
+  </div> -->
 
 
   <div class="row">
     <div class="col-md-3">
-      <ul class="nav flex-column nav-pills ">
-        <!-- <li class="nav-item" ><a href="/">Home</a></li>
-        <li class="nav-item" ><a href="/users">Users</a></li>
-        <li class="nav-item" ><a href="/category">Catogories</a></li> -->
-        <li class="nav-item" ><a  class="nav-link " routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a></li>
-        <li class="nav-item" ><a  class="nav-link" routerLink="/users" routerLinkActive="active">Users</a></li>
-        <li class="nav-item" ><a  class="nav-link" [routerLink]="['/category']" routerLinkActive="active">Catogories</a></li>
-      </ul>
+    <app-navigation></app-navigation>
     </div>
+
+
+
     <div class="col-md-9">
       <div class="row">
         <div class="col-md-12">
+
+          <div *ngIf="userAdded">
+            user added button click
+          </div>
+          
             <router-outlet> </router-outlet>
         </div>
       </div>
