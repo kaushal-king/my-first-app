@@ -1,8 +1,11 @@
-import { Component } from "@angular/core";
+import { Component, ComponentFactoryResolver, OnDestroy, ViewChild } from "@angular/core";
 import { FormControl, NgForm } from "@angular/forms";
-import { Observable, retry } from "rxjs";
+import { Observable, Subscription, retry } from "rxjs";
 import { AuthService, authResponceData } from "../services/auth.services";
 import { Router } from "@angular/router";
+import { AlerModelComponent } from "../shared/alert-model/alert-model.component";
+import { PlaceHolderDirectives } from "../shared/placeholder.directive/placeholder.directives";
+import { compileNgModule } from "@angular/compiler";
 
 
 @Component({
@@ -10,16 +13,24 @@ import { Router } from "@angular/router";
     templateUrl:'./auth.component.html'
 
 })
-export class AuthComponent{
+export class AuthComponent implements OnDestroy {
 
     isLoginMode=true;
     isLoading=false;
     error!:string;
+    closesub!:Subscription;
+    @ViewChild(PlaceHolderDirectives) alertHost!:PlaceHolderDirectives;
 
     authObsevale!:Observable<authResponceData>
     
 
-    constructor (private authservice:AuthService,private router:Router){}
+    constructor (private authservice:AuthService,private router:Router,private componentFactoryResolver:ComponentFactoryResolver){}
+    ngOnDestroy(): void {
+        if(this.closesub){
+            this.closesub.unsubscribe()
+        }
+      
+    }
 
     onSwitchMode(){
         this.isLoginMode=!this.isLoginMode
@@ -54,9 +65,24 @@ export class AuthComponent{
                 console.log(error)
                 this.isLoading=false;
                 this.error=error;
+                this.showErrorAlert(error)
                 
 
             })
+    }
+
+
+    showErrorAlert(error: any) {
+        const componetfactory=this.componentFactoryResolver.resolveComponentFactory(AlerModelComponent)
+        this.alertHost.viewContainerRefrence.clear()
+        const componentref=this.alertHost.viewContainerRefrence.createComponent(componetfactory)
+        componentref.instance.error=error;
+         this.closesub= componentref.instance.onClose.subscribe(()=>{
+            this.closesub.unsubscribe()
+            this.alertHost.viewContainerRefrence.clear()
+        })
+     
+        
     }
 
 

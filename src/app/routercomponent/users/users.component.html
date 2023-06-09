@@ -1,13 +1,13 @@
 <ul class="nav flex-column">
-    <li class="nav-item"> 
-        <a [routerLink]="['/users',1,'rama']" [queryParams]="{page:1,search:'rama'}" class="nav-link" >get rama details </a>
+    <li class="nav-item"  *ngFor="let user of userData" > 
+        <a [routerLink]="['/users',1,user]" [queryParams]="{page:1,search:user}" class="nav-link" >get {{user}} details </a>
     </li>
-    <li class="nav-item"> 
+    <!-- <li class="nav-item"> 
         <a [routerLink]="['/users',2,'krishna']" [queryParams]="{page:1,search:'rama'}" class="nav-link" >get krishna details </a>
     </li>
     <li class="nav-item"> 
         <a [routerLink]="['/users',3,'lela']" [queryParams]="{page:1,search:'rama'}" class="nav-link" >get lela details </a>
-    </li>
+    </li> -->
 </ul>
 
 <div>

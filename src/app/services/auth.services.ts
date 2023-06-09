@@ -21,7 +21,7 @@ export class AuthService{
 
     isLoggedIn=false;
     userSub=new BehaviorSubject<User|any>(null);
-
+    clearTimeout:any
     constructor(private http:HttpClient,private router:Router){}
 
     signup(email:string,password:string){
@@ -45,7 +45,25 @@ export class AuthService{
             const expiredata=new Date(new Date().getTime()+ Number.parseInt(Response.expiresIn) *1000)
             const user=new User(Response.email,Response.localId,Response.idToken,expiredata)
             this.userSub.next(user);
+            localStorage.setItem('userData', JSON.stringify(user) )
+            this.autoLogout(+Response.expiresIn*1000)
         
+    }
+
+    autoLogin(){
+        let userdata:{email:string,localId:string,_token:string,expirationDate:Date}  =  JSON.parse( localStorage.getItem('userData')!!)
+        if(!userdata){
+            return
+        }
+            let user=new User(userdata.email,userdata.localId,userdata._token, new Date(userdata.expirationDate))
+
+            if(user.token){
+                this.userSub.next(user);
+            }
+            let date=new Date().getTime()
+            let expirationDate=new Date(userdata.expirationDate).getTime()
+
+            this.autoLogout(expirationDate-date)
     }
 
     getErrorHandlear(errorResponce:HttpErrorResponse){
@@ -69,9 +87,22 @@ export class AuthService{
             return throwError(error)
     }
 
+
+    autoLogout(expirationDate:number){
+        console.log(expirationDate);
+        
+       this.clearTimeout= setTimeout(() => {
+            this.logout()
+        }, expirationDate);
+    }
+
     logout(){
        this.userSub.next(null)
        this.router.navigate(['/auth']);
+       localStorage.removeItem('userData')
+       if(this.clearTimeout){
+        clearTimeout(this.clearTimeout)
+       }
     }
 
     isAuthenticated(){

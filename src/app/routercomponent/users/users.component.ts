@@ -10,6 +10,8 @@ export class UsersrouterComponent {
 
   constructor(private userdataSercive:userdataSercive){}
 
+  userData=['Rama','krishna','leela'];
+
   onUserAddedClick(){
    this.userdataSercive.addUser();
   }

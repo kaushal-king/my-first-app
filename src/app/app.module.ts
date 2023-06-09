@@ -42,6 +42,11 @@ import { LogginInterceptor } from './services/loggin-interseptor';
 import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinner } from './shared/loading-spinner/loading-spinner.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { AlerModelComponent } from './shared/alert-model/alert-model.component';
+import { PlaceHolderDirectives } from './shared/placeholder.directive/placeholder.directives';
+import { UserModule } from './user.module';
+import { PostModule } from './post.module';
+import { AuthModule } from './auth.module';
 
 
 
@@ -58,22 +63,20 @@ import { NavigationComponent } from './navigation/navigation.component';
     AddUserForServicesComponent,
     CategoryComponent,
     HomeComponent,
-    UserrouterComponent,
-    UsersrouterComponent,
-    EditUserComponent,
     PageNotFoundComponent,
     TemplateFormComponent,
     ReactiveFormComponent,
     FillterPipesComponent,
     ShortenPipe,
     FiltercustomepipePipe,
-    PostComponent,
-    AuthComponent,
-    LoadingSpinner,
-    NavigationComponent
+
+   
+    NavigationComponent,
+    AlerModelComponent,
+    PlaceHolderDirectives
   ],
   imports: [
-    BrowserModule,  FormsModule,AppRoutingModule,ReactiveFormsModule,HttpClientModule
+    BrowserModule,  FormsModule,UserModule, AuthModule ,PostModule,AppRoutingModule,ReactiveFormsModule,HttpClientModule
     
   ],
 
@@ -85,3 +88,4 @@ import { NavigationComponent } from './navigation/navigation.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+                                                                                                    

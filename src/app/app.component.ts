@@ -30,7 +30,8 @@ export class AppComponent implements OnInit,OnDestroy {
     this.userAddedSusbriction=this.userdataSercive.userAddedEvent.subscribe(data=>{
       console.log('call'+data)
       this.userAdded=data
-    })
+    })  
+    this.AuthService.autoLogin()
    
   }
 

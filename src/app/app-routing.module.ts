@@ -15,28 +15,17 @@ import { ReactiveFormComponent } from "./form/reactive-form/reactive-form.compon
 import { FillterPipesComponent } from "./pipe/fillter-pipes/fillter-pipes.component";
 import { PostComponent } from "./http/post/post.component";
 import { AuthComponent } from "./auth/auth.component";
+import { AuthGuardUrl } from "./services/guards/auth-guard";
 
 
 
 const appRoutes:Routes=[
     {path:'',component:HomeComponent,data:{page:1,search:'kushal'}},//localhost:4200   //data pass static data in angular
-    {path:'users',component:UsersrouterComponent,
-  
-    canActivateChild:[AuthGuardServices],   // allow parent but not child
-    // canActivate:[AuthGuardServices],  //parent guard 
-    children:[
-      {path:':id/:name',component:UserrouterComponent},
-      {path:':id/:name/edit',component:EditUserComponent,
-       canDeactivate:[DeactivateGuardServicer],
-       resolve:{user:UserResolver},   //implement resolve service name here so you get dynamic data
-      },
-    ]},
     {path:'category',component:CategoryComponent},
     {path:'form',component:TemplateFormComponent},
     {path:'reactive-form',component:ReactiveFormComponent},
     {path:'pipe',component:FillterPipesComponent},
-    {path:'post',component:PostComponent},
-    {path:'auth',component:AuthComponent},
+
     {path:'not-found',component:PageNotFoundComponent},           
     {path:'**',redirectTo:'not-found'},//does not matach anything and add this line at the end
   ]
