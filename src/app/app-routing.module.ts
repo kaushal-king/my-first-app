@@ -24,7 +24,7 @@ const appRoutes:Routes=[
     {path:'category',component:CategoryComponent},
     {path:'form',component:TemplateFormComponent},
     {path:'reactive-form',component:ReactiveFormComponent},
-    {path:'pipe',component:FillterPipesComponent},
+   
 
     {path:'not-found',component:PageNotFoundComponent},           
     {path:'**',redirectTo:'not-found'},//does not matach anything and add this line at the end

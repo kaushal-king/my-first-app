@@ -47,6 +47,7 @@ import { PlaceHolderDirectives } from './shared/placeholder.directive/placeholde
 import { UserModule } from './user.module';
 import { PostModule } from './post.module';
 import { AuthModule } from './auth.module';
+import { FillterModule } from './fillter.module';
 
 
 
@@ -66,9 +67,7 @@ import { AuthModule } from './auth.module';
     PageNotFoundComponent,
     TemplateFormComponent,
     ReactiveFormComponent,
-    FillterPipesComponent,
-    ShortenPipe,
-    FiltercustomepipePipe,
+    
 
    
     NavigationComponent,
@@ -76,7 +75,7 @@ import { AuthModule } from './auth.module';
     PlaceHolderDirectives
   ],
   imports: [
-    BrowserModule,  FormsModule,UserModule, AuthModule ,PostModule,AppRoutingModule,ReactiveFormsModule,HttpClientModule
+    BrowserModule,  FormsModule,UserModule,FillterModule, AuthModule ,PostModule,AppRoutingModule,ReactiveFormsModule,HttpClientModule
     
   ],
 

@@ -9,16 +9,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { UserrouterComponent } from './routercomponent/user/user.component';
 import { UserRoutingModule } from './user.routing.module';
+import { ShortenPipe } from './pipe/shorten.pipe';
+import { SharedModule } from './shared.module';
 
 @NgModule({
     declarations: [
         EditUserComponent,
         UsersrouterComponent,
-        UserrouterComponent
+        UserrouterComponent,
+      
       
     ],
     imports: [
-        CommonModule,FormsModule,UserRoutingModule
+        CommonModule,FormsModule,UserRoutingModule,SharedModule
         
       ],
     exports:[
