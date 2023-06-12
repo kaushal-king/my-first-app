@@ -11,6 +11,7 @@ import { UserrouterComponent } from './routercomponent/user/user.component';
 import { UserRoutingModule } from './user.routing.module';
 import { ShortenPipe } from './pipe/shorten.pipe';
 import { SharedModule } from './shared.module';
+import { DummyServices } from './services/dummy.services';
 
 @NgModule({
     declarations: [

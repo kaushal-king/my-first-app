@@ -3,6 +3,7 @@ import { ShortenPipe } from "./pipe/shorten.pipe";
 import { FiltercustomepipePipe } from "./pipe/filtercustomepipe.pipe";
 import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
+import { DummyServices } from "./services/dummy.services";
 
 
 
@@ -21,7 +22,10 @@ import { CommonModule } from "@angular/common";
         FiltercustomepipePipe,
         CommonModule,
         FormsModule
-    ]
+    ],
+    providers:[
+        DummyServices
+      ],
 })
 export class SharedModule{
 

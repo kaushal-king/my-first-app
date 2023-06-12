@@ -11,7 +11,7 @@ import {  ReactiveFormsModule } from "@angular/forms";
         CommonModule,
         ReactiveFormsModule,
         RouterModule.forChild([
-            {path:'post',component:PostComponent,canActivate:[AuthGuardUrl]},
+            {path:'',component:PostComponent,canActivate:[AuthGuardUrl]},
         ])
     ]
 })

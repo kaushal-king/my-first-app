@@ -48,6 +48,8 @@ import { UserModule } from './user.module';
 import { PostModule } from './post.module';
 import { AuthModule } from './auth.module';
 import { FillterModule } from './fillter.module';
+import { CoreModule } from './core.module';
+import { DummyServices } from './services/dummy.services';
 
 
 
@@ -75,15 +77,11 @@ import { FillterModule } from './fillter.module';
     PlaceHolderDirectives
   ],
   imports: [
-    BrowserModule,  FormsModule,UserModule,FillterModule, AuthModule ,PostModule,AppRoutingModule,ReactiveFormsModule,HttpClientModule
+    BrowserModule, CoreModule, FormsModule,FillterModule, AuthModule ,AppRoutingModule,ReactiveFormsModule,HttpClientModule
     
   ],
+ 
 
-  providers: [UserServices,LoggingServices,AuthService,AuthGuardServices,DeactivateGuardServicer,UserResolver,userdataSercive,
-              {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptorService,multi:true},
-              {provide:HTTP_INTERCEPTORS,useClass:LogginInterceptor,multi:true},
-              {provide:HTTP_INTERCEPTORS,useClass:AuthTokenInterseportService,multi:true},
-  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

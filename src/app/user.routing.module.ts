@@ -7,7 +7,7 @@ import { UserResolver } from "./services/resolver/user-resolver.services";
 import { DeactivateGuardServicer } from "./services/guards/deactivate-guard.services";
 import { EditUserComponent } from "./routercomponent/edit-user/edit-user.component";
 
-const userRoute:Routes=[ {path:'users',component:UsersrouterComponent,
+const userRoute:Routes=[ {path:'',component:UsersrouterComponent,
   
 canActivate:[AuthGuardUrl],   // allow parent but not child
 // canActivate:[AuthGuardServices],  //parent guard 

@@ -21,11 +21,11 @@ import { AuthGuardUrl } from "./services/guards/auth-guard";
 
 const appRoutes:Routes=[
     {path:'',component:HomeComponent,data:{page:1,search:'kushal'}},//localhost:4200   //data pass static data in angular
+    {path:'users', loadChildren:()=>import('./user.module').then(m=>m.UserModule) },
+    {path:'post', loadChildren:()=>import('./post.module').then(m=>m.PostModule) },
     {path:'category',component:CategoryComponent},
     {path:'form',component:TemplateFormComponent},
     {path:'reactive-form',component:ReactiveFormComponent},
-   
-
     {path:'not-found',component:PageNotFoundComponent},           
     {path:'**',redirectTo:'not-found'},//does not matach anything and add this line at the end
   ]
